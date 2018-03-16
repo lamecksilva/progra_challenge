@@ -1,35 +1,92 @@
-package To_do_list_10;       // Informando qual pacote o programa está.
-import java.util.Scanner;       // Importando a biblioteca do Scanner.
+package To_do_list_10;
+import java.io.PrintStream;
+import java.util.Scanner;
 
-public class main_10 {      // Iniciando a classe do codigo principal do programa 10 da lista.
-    public static void main(String[] args) {    // Iniciando a main.
-        int escolha = menu();       // Declarando a variável escolha que é resultado do que a funcao menu retorna.
-        System.out.println("");     // Um sout vazio.
-        switch (escolha) {      // Iniciando switch.
-            case 1:     // Caso a função retorne o valor 1, irá mostrar na tela a lista.
-                System.out.println("Mostrando lista...");
-            break;
+
+public class main_10 {
+    public static String[] list = new String[50];
+    public static Scanner input = new Scanner(System.in);
+    public static int option, optionList;
+    
+    public static void main(String[] args){
+        
+        do {
+            option = showMenu();
             
-            case 2:    // Caso a função retorne 2, o programa irá encerrar sua execução automaticamente.
-                System.out.println("Encerrando programa...");
-                System.exit(0);   // Função para encerrar programas em java.
-            break;
-            
-            default:     // Caso o caboclo não digite nada condizente com as opções do menu, 
-                                  // Irá aparecer uma mensagem de erro e o programa encerrará.
-                System.out.println("Opção errada amigo.\nEncerrando programa...");
+            if (option == 1) {
+                showList();    
+            }
+        } while(option != 2);
+    }
+    
+    public static int showMenu(){
+        int opt;
+        System.out.println("\tTo Do List");
+        System.out.println("[ 1 ] - Show List");
+        System.out.println("[ 2 ] - Exit\n");
+        System.out.print("Option: ");
+        opt = input.nextInt();
+        
+        return opt;
+    }
+    
+    public static void showList(){
+        for(int contador = 0; contador != 50; contador++) {
+            if (list[contador] != null) {
+                System.out.printf("[ %d] - %s\n",(contador + 1),(list[contador]));
+            }
+        }
+        System.out.printf("\n");
+        System.out.printf("[ 1 ] - Add Item \t [ 2 ] - Modify Item \t [ 3 ] - Delete Item \t [ 4 ] - Exit \n");
+        optionList = input.nextInt();
+        
+        switch (optionList) {
+            case 1: 
+                addItem();
+                break;
+                
+            case 2: 
+                modifyItem();
+                break;
+                
+            case 3: 
+                deleteItem();
+                break;
+                
+            default:
+                System.out.println("kys my cok ur dank");
         }
     }
     
-    public static int menu() {          // Função criada para mostrar o menu ao usuário e retornar o valor da resposta.
-        Scanner input = new Scanner(System.in);     // Criando uma intância da classe Scanner.
+    public static void addItem(){
         
-        System.out.println("============= To do List ==============");      // Firulas.
-        System.out.println("=======Gerenciador de coisas para fazer=======");       // Mais Firulas.
-        System.out.println("[ 1 ] - Mostrar Lista");        // Inacreditável como tem que deixar bonitiho.
-        System.out.println("[ 2 ] - Encerrar e Sair");         // Mesmo nao tendo GUI, tem que ficar agradável.
-        int menu = input.nextInt();         // A variável menu, irá receber um valor inteiro do usuário.
-        return menu;    // E ao final do código, irá retornar o valor da resposta.
+        char add = 'y';
+        
+        for (int contador = 0; contador != 50; contador++){
+            
+            if(list[contador] == null && add == 'y'){
+                
+                System.out.printf("\n Add Item: ");
+                list[contador] = input.nextLine();
+                
+            } 
+            else {
+                break;
+            }
+            
+            System.out.println("\n Add more? [ y or n]: ");
+            add = input.next().charAt(0);
+            
+        }
+        
     }
-}
-
+    
+    public static void modifyItem(){
+        
+    }
+    
+    public static void deleteItem(){
+        
+    }
+    
+    }
