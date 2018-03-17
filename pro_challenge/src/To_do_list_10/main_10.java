@@ -1,92 +1,109 @@
-package To_do_list_10;
-import java.io.PrintStream;
-import java.util.Scanner;
+/*
 
+@author: Lameck
+@description: Apenas um programa funcional de uma lista de afazeres temporária( temporária pois após o encerramento do programa, os dados são perdidos).
+*/
+package To_do_list_10;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class main_10 {
-    public static String[] list = new String[50];
     public static Scanner input = new Scanner(System.in);
-    public static int option, optionList;
+    public static ArrayList<String> tdList = new ArrayList<String>();
+    public static int option,optionM;
     
     public static void main(String[] args){
-        
-        do {
-            option = showMenu();
+        do{
+            showMainMenu();
+            calcOption(option);
             
-            if (option == 1) {
-                showList();    
-            }
-        } while(option != 2);
+        } while (option != 2);
+        
     }
     
-    public static int showMenu(){
-        int opt;
-        System.out.println("\tTo Do List");
-        System.out.println("[ 1 ] - Show List");
-        System.out.println("[ 2 ] - Exit\n");
-        System.out.print("Option: ");
-        opt = input.nextInt();
+    public static void showMainMenu(){                                              // Function to show the main menu of program
+        System.out.println("\n \t *** To do List - Menu ***");
+        System.out.println("( 1 )- Show List");
+        System.out.println("( 2 ) - Exit");
         
-        return opt;
+        System.out.printf("\n[ Option ] - ");
+        option = input.nextInt();
+    }
+    
+    public static void calcOption(int option) {                                     // Function to calc the option 
+        switch (option){
+            case 1:
+                showList();
+                break;
+                
+            case 2:
+                break;
+        }
     }
     
     public static void showList(){
-        for(int contador = 0; contador != 50; contador++) {
-            if (list[contador] != null) {
-                System.out.printf("[ %d] - %s\n",(contador + 1),(list[contador]));
-            }
+        System.out.println("\n \t ### To do List - List ###");
+        for (int counter = 0; counter != tdList.size(); counter++){
+            System.out.printf("[ %d ] - %s\n",(counter+1),tdList.get(counter));
         }
-        System.out.printf("\n");
-        System.out.printf("[ 1 ] - Add Item \t [ 2 ] - Modify Item \t [ 3 ] - Delete Item \t [ 4 ] - Exit \n");
-        optionList = input.nextInt();
         
-        switch (optionList) {
-            case 1: 
+        System.out.printf("\n ( 1 ) - Add new item");
+        System.out.printf("\t ( 2 ) - Modify Item");
+        System.out.printf("\t ( 3 ) - Remove Item");
+        System.out.println("\t ( 4 ) - Exit ");
+        System.out.printf("[ OPTION ] = ");
+        optionM = input.nextInt();
+        input.nextLine();
+        
+        switch (optionM) {
+            case 1:
                 addItem();
                 break;
                 
-            case 2: 
+            case 2:
                 modifyItem();
                 break;
                 
-            case 3: 
-                deleteItem();
+            case 3:
+                removeItem();
                 break;
                 
-            default:
-                System.out.println("kys my cok ur dank");
+            case 4:
+                break;
+                
         }
     }
     
-    public static void addItem(){
+    public static void addItem() {
+        String temp;
+            System.out.printf("ADD: ");
+            
+            temp = input.nextLine();
+            tdList.add(tdList.size(),temp);
+            
+    }
+    
+    public static void modifyItem() {
+        System.out.printf("Please, select a line: ");
+        int line = input.nextInt();
+        line = (line - 1);
+        input.nextLine();
         
-        char add = 'y';
-        
-        for (int contador = 0; contador != 50; contador++){
-            
-            if(list[contador] == null && add == 'y'){
-                
-                System.out.printf("\n Add Item: ");
-                list[contador] = input.nextLine();
-                
-            } 
-            else {
-                break;
-            }
-            
-            System.out.println("\n Add more? [ y or n]: ");
-            add = input.next().charAt(0);
-            
-        }
+        System.out.printf("Modify for: ");
+        String temp = input.nextLine();
+        tdList.set(line, temp);
+        System.out.printf("\n Line updated!! \n");
         
     }
     
-    public static void modifyItem(){
+    public static void removeItem() {
+        System.out.printf("Please, select a line: ");
+        int line = input.nextInt();
+        line = (line -1);
+        input.nextLine();
         
+        tdList.remove(line);
+        System.out.printf("List Updated!!\n");
     }
     
-    public static void deleteItem(){
-        
-    }
-    
-    }
+}
