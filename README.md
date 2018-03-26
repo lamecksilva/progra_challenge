@@ -1,6 +1,6 @@
-# Pro/g/ramming challenge
+# Pro/g/ramming challenge v4.0
 
-Olá, este repositório tem como objetivo armazenar os codigos dos programas da 'enorme' lista do desafio de programação do /g/, abaixo vai a imagem da lista.
+Olá, este repositório tem como objetivo armazenar os codigos dos programas da 'enorme' lista 4.0 do desafio de programação do /g/, abaixo vai a imagem da lista.
 
 ![programming_challenges2](https://user-images.githubusercontent.com/31391753/37243746-83174438-2476-11e8-81ac-18f7bd46fbfe.png)
 
